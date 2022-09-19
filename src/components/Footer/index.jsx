@@ -4,4 +4,4 @@ const Render = () => {
         <style.background></style.background>
     )
 }
-export default Render;
+export default Render
