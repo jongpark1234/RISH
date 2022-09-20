@@ -5,11 +5,10 @@ import Potential from '../components/Potential/index'
 import Additional from '../components/Additional/index'
 import Statistics from '../components/Statistics/index'
 export default [
-    {path: '', component: <Main/>},
-    {path: '*', component: <NotFound/>},
-    {path: 'main', component: <Main/>},
-    {path: 'starforce', component: <Starforce/>},
-    {path: 'potential', component: <Potential/>},
-    {path: 'additional', component: <Additional/>},
-    {path: 'statistics', component: <Statistics/>},
+    { path: '*', component: <NotFound/> },
+    { path: '', component: <Main/> },
+    { path: 'starforce', component: <Starforce/> },
+    { path: 'potential', component: <Potential/> },
+    { path: 'additional', component: <Additional/> },
+    { path: 'statistics', component: <Statistics/> },
 ]

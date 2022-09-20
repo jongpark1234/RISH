@@ -1,6 +1,6 @@
 import routes from './routes'
-import Nav from '../components/Nav/index'
-import Footer from '../components/Footer/index'
+import Nav from '../components/common/Nav/index'
+import Footer from '../components/common/Footer/index'
 import { Route, Routes } from 'react-router-dom'
 const Router = () => {
     return (

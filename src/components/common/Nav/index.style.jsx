@@ -7,6 +7,7 @@ export const background = styled.div`
     align-items: center;
     justify-content: space-evenly;
     box-sizing: border-box;
+    text-decoration: none;
 `
 export const menu = styled.span`
     font-size: 25px;

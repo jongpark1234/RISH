@@ -7,6 +7,6 @@ const App = () => {
         <GlobalFont/>
             <Router/>
         </BrowserRouter>
-    );
+    )
 }
 export default App
