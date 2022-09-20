@@ -1,6 +1,9 @@
+import * as style from './index.style'
 const Render = () => {
     return (
-        <span>NotFound</span>
+        <style.background>
+            <span>NotFound</span>
+        </style.background>
     )
 }
 export default Render

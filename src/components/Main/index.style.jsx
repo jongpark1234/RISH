@@ -5,5 +5,5 @@ export const background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: yellow;
+    background-color: gray;
 `

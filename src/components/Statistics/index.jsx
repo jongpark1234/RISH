@@ -1,6 +1,9 @@
+import * as style from './index.style'
 const Render = () => {
     return (
-        <div></div>
+        <style.background>
+            <span>통계</span>
+        </style.background>
     )
 }
 export default Render

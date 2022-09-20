@@ -1,13 +1,28 @@
 import { Link } from 'react-router-dom'
 import * as style from './index.style'
 const Render = () => {
+    const contents = [
+        { title : '메인화면', params : '/' }, 
+        { title : '스타포스', params : '/starforce' }, 
+        { title : '잠재능력', params : '/potential' }, 
+        { title : '추가옵션', params : '/additional' }, 
+        { title : '통계', params : '/statistics' }, 
+    ]
     return (
         <style.background>
-            <Link to='/'><style.menu>메인화면</style.menu></Link>
-            <Link to='/starforce'><style.menu>스타포스</style.menu></Link>
-            <Link to='/potential'><style.menu>잠재능력</style.menu></Link>
-            <Link to='/additional'><style.menu>추가옵션</style.menu></Link>
-            <Link to='/statistics'><style.menu>통계</style.menu></Link>
+            {
+                contents.map((items) => {
+                    return (
+                        <style.container>
+                            <Link to={items.params}>
+                                <style.menu>
+                                    {items.title}
+                                </style.menu>
+                            </Link>
+                        </style.container>
+                    )
+                })
+            }
         </style.background>
     )
 }
