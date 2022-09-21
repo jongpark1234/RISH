@@ -1,19 +1,24 @@
 import styled from 'styled-components'
 export const background = styled.div`
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 300vh;
+    padding-top: 100px;
+    padding-bottom: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 `
 export const Wrapper = styled.div`
+    padding-top: 100px;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
 `
 export const title = styled.span`
     position: absolute;
@@ -33,6 +38,48 @@ export const container = styled.div`
     align-items: center;
     border-radius: 15px;
     box-shadow: 2px 2px 4px 4px gray;
+    `
+export const optionContainer = styled.div`
+    width: 20%;
+    min-width: 400px;
+    max-width: 600px;
+    height: 500px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px 4px gray;
+    gap: 30px;
+`
+export const optionList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
+export const optionRow = styled.div`
+    display: flex;
+    gap: 10px;
+`
+export const optionButton = styled.div`
+    height: 75px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => props.isturned ? '#ffff00' : 'buttonface'};
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: .15s ease-in-out background-color;
+    cursor: pointer;
+    > span {
+        user-select: none;
+        font-size: 15px; 
+    }
+    &:hover {
+        background-color: ${(props) => props.isturned ? '#dddd00' : 'lightgray'};
+    }
+
 `
 export const starContainer = styled.div`
     display: flex;
