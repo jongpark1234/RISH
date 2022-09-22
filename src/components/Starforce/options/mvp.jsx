@@ -23,7 +23,7 @@ const Render = () => {
             <style.buttonContainer>
                 <style.optionButton onClick={() => {handleMvp(-1)}}/>
                 <style.mvpImg src={imglist[mvp]}/>
-                <style.optionButton onClick={() => {handleMvp(1)}}/>
+                <style.optionButton onClick={() => {handleMvp(+1)}}/>
             </style.buttonContainer>
         </style.optionRow>
     )
