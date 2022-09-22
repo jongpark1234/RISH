@@ -38,7 +38,7 @@ export const container = styled.div`
     align-items: center;
     border-radius: 15px;
     box-shadow: 2px 2px 4px 4px gray;
-    `
+`
 export const optionContainer = styled.div`
     width: 20%;
     min-width: 400px;
@@ -53,13 +53,27 @@ export const optionContainer = styled.div`
     gap: 30px;
 `
 export const optionList = styled.div`
+    width: 80%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 `
 export const optionRow = styled.div`
     display: flex;
+    flex-direction: column;
     gap: 10px;
+`
+export const optionCategory = styled.div`
+    display: flex;
+    align-items: center;
+`
+export const line = styled.hr`
+    width: 30%;
+    height: 0;
+`
+export const buttonContainer = styled.div`
+    display: flex;
+    justify-content: space-evenly;
 `
 export const optionButton = styled.div`
     height: 75px;
@@ -79,7 +93,11 @@ export const optionButton = styled.div`
     &:hover {
         background-color: ${(props) => props.isturned ? '#dddd00' : 'lightgray'};
     }
-
+`
+export const mvpImg = styled.img`
+    width: 75px;
+    aspect-ratio: 1 / 1;
+    user-select: none;
 `
 export const starContainer = styled.div`
     display: flex;

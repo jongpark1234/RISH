@@ -13,12 +13,10 @@ const Render = () => {
             {
                 contents.map((items) => {
                     return (
-                        <style.container>
-                            <Link to={items.params}>
-                                <style.menu>
-                                    {items.title}
-                                </style.menu>
-                            </Link>
+                        <style.container to={items.params}>
+                            <style.menu>
+                                {items.title}
+                            </style.menu>
                         </style.container>
                     )
                 })
