@@ -21,9 +21,9 @@ const Render = () => {
                 <style.line/>
             </style.optionCategory>
             <style.buttonContainer>
-                <style.optionButton onClick={() => {handleMvp(-1)}}/>
+                <style.optionButton onClick={() => {handleMvp(-1)}}>등급 ▼</style.optionButton>
                 <style.mvpImg src={imglist[mvp]}/>
-                <style.optionButton onClick={() => {handleMvp(+1)}}/>
+                <style.optionButton onClick={() => {handleMvp(+1)}}>등급 ▲</style.optionButton>
             </style.buttonContainer>
         </style.optionRow>
     )
