@@ -34,6 +34,7 @@ const Render = () => {
                     <style.optionList>
                         {commonOption()}
                         {mvpOption()}
+                        {sundayOption()}
                     </style.optionList>
                 </style.optionContainer>
             </style.Wrapper>
