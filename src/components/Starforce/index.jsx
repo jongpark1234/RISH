@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { chancetimeState, mvpLevelState, starCatchState, starforceCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
+import { chancetimeState, mvpLevelState, starCatchState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
 
 import * as style from './index.style'
 import * as util from '../../styles/util'
@@ -17,6 +17,7 @@ import distroyEffect from './star_destroyed.gif'
 
 const Render = () => {
     const [starRequireLevel, setStarRequireLevel] = useRecoilState(starRequireLevelState)
+    const [starItemCost, setStarItemCost] = useRecoilState(starItemCostState)
     const [starLevel, setStarLevel] = useRecoilState(starLevelState)
     const [chancetime, setChancetime] = useRecoilState(chancetimeState)
     const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
@@ -27,6 +28,9 @@ const Render = () => {
     const [sundayOption1, setSundayOption1] = useRecoilState(sundayOption1State)
     const [sundayOption2, setSundayOption2] = useRecoilState(sundayOption2State)
     const [sundayOption3, setSundayOption3] = useRecoilState(sundayOption3State)
+    const inputValue = (state, func) => {
+        func(Number(state.toString().replace(/[^0-9]/g, '')))
+    }
     const calcNormalCost = () => {
         let ret = 0
         if (starLevel < 10) {
@@ -102,6 +106,7 @@ const Render = () => {
                 setStarLevel(starLevel)
             }
             else { // 파괴 방지 비활성화
+                setStarforceCost(starforceCost + starItemCost)
                 setStarLevel(12)
             }
         }
@@ -122,11 +127,11 @@ const Render = () => {
                     <style.inputWrapper>
                         <style.inputContainer>
                             <util.Text fontsize='15'>장비 요구 레벨</util.Text>
-                            <style.enhanceInput/>
+                            <style.enhanceInput type='text' value={starRequireLevel.toLocaleString('ko-KR')} onChange={(e) => {setStarRequireLevel(e.target.value)}}/>
                         </style.inputContainer>
                         <style.inputContainer>
                             <util.Text fontsize='15'>아이템 가격</util.Text>
-                            <style.enhanceInput/>
+                            <style.enhanceInput type='text' value={starItemCost.toLocaleString('ko-KR')} onChange={(e) => {inputValue(e.target.value, setStarItemCost)}}/>
                         </style.inputContainer>
                     </style.inputWrapper>
                     <style.percentContainer>

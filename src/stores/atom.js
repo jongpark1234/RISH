@@ -23,6 +23,11 @@ export let starRequireLevelState = atom({
     default: 200
 })
 
+export let starItemCostState = atom({
+    key: 'starItemCost',
+    default: 100000000
+})
+
 export let chancetimeState = atom({
     key: 'chancetime',
     default: 0
