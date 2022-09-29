@@ -114,13 +114,25 @@ const Render = () => {
                 <style.enhanceContainer>
                     <util.Text fontweight={'bold'}>스타포스 강화</util.Text>
                     <style.starContainer>
-                        <util.Text fontsize='35' color={'pink'}>★</util.Text>
+                        <style.starText fontsize='35' color={'pink'}>★</style.starText>
                         <util.Text fontsize='20'>x{starLevel}</util.Text>
                     </style.starContainer>
-                    <util.Text fontsize='20'>피버 타임 : {chancetime == 2 ? '활성화' : '비활성화'}</util.Text>
                     <util.Text fontsize='15'>성공 확률 : {calcPercents().success.toFixed(2)}%&nbsp;실패 확률 : {calcPercents().failed.toFixed(2)}%&nbsp;파괴 확률 : {calcPercents().destroyed.toFixed(2)}%</util.Text>
-                    <util.Text fontsize='20'>현재 사용 메소 : {calcFinalCost().toLocaleString('ko-KR')}</util.Text>
-                    <util.Text fontsize='20'>사용한 메소 : {starforceCost.toLocaleString('ko-KR')}</util.Text>
+                    <util.Text fontsize='20'>피버 타임 : {chancetime == 2 ? '활성화' : '비활성화'}</util.Text>
+                    <style.inputWrapper>
+                        <style.inputContainer>
+                            <util.Text fontsize='15'>장비 요구 레벨</util.Text>
+                            <style.enhanceInput/>
+                        </style.inputContainer>
+                        <style.inputContainer>
+                            <util.Text fontsize='15'>아이템 가격</util.Text>
+                            <style.enhanceInput/>
+                        </style.inputContainer>
+                    </style.inputWrapper>
+                    <style.percentContainer>
+                        <util.Text fontsize='20'>현재 단계 메소 : {calcFinalCost().toLocaleString('ko-KR')}</util.Text>
+                        <util.Text fontsize='20'>누적 사용 메소 : {starforceCost.toLocaleString('ko-KR')}</util.Text>
+                    </style.percentContainer>
                     <button onClick={() => processStarforce()}>스타포스 시행</button>
                 </style.enhanceContainer>
                 <style.optionContainer>

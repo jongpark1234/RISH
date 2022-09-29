@@ -34,10 +34,37 @@ export const enhanceContainer = styled.div`
     height: 400px;
     padding-top: 20px;
     display: flex;
+    row-gap: 15px;
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
     box-shadow: 2px 2px 4px 4px gray;
+`
+export const starText = styled.span`
+    font-size: 30px;
+    color: #ffff70;
+    text-shadow: 0px 1px 4px black;
+`
+export const percentContainer = styled.div`
+    display: flex;
+    gap: 20px;
+`
+export const inputWrapper = styled.div`
+    display: flex;
+    gap: 20px;
+`
+export const inputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+export const enhanceInput = styled.input`
+    display: flex;
+    width: 100px;
+    height: 20px;
+    padding-left: 3px;
+    border: 1px solid black;
+    outline: none;
 `
 export const optionContainer = styled.div`
     width: 20%;
@@ -92,6 +119,12 @@ export const optionButton = styled.div`
     }
     &:hover {
         background-color: ${(props) => props.isturned ? '#dddd00' : 'lightgray'};
+    }
+`
+export const protectButton = styled(optionButton)`
+    background-color: ${(props) => props.isturned ? (12 <= props.starLevel && props.starLevel <= 16 ? '#ffff00' : '#dddd00') : (12 <= props.starLevel && props.starLevel <= 16 ? 'buttonface' : 'lightgray')};
+    &:hover {
+        background-color: ${(props) => props.isturned ? (12 <= props.starLevel && props.starLevel <= 16 ? '#dddd00' : '#bbbb00') : (12 <= props.starLevel && props.starLevel <= 16 ? 'lightgray' : 'darkgray')};
     }
 `
 export const mvpImg = styled.img`
