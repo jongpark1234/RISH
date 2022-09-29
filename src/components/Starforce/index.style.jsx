@@ -27,7 +27,7 @@ export const title = styled.span`
     left: 2%;
     top: 2%;
 `
-export const container = styled.div`
+export const enhanceContainer = styled.div`
     width: 80%;
     min-width: 650px;
     max-width: 850px;
