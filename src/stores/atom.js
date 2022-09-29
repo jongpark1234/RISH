@@ -20,7 +20,7 @@ export let starLevelState = atom({
 
 export let starRequireLevelState = atom({
     key: 'starRequireLevel',
-    default: 100
+    default: 200
 })
 
 export let chancetimeState = atom({

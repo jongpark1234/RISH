@@ -51,15 +51,15 @@ const Render = () => {
         const protectCost = ((12 <= starLevel && starLevel <= 16) && starProtect) ? normalCost : 0
         return Math.round((normalCost * discount + protectCost) / 10) * 10
     }
-    const calcPercents = () => {
+    const calcPercents = () => { // 성공 확률, 실패 확률, 파괴 확률을 계산하여 반환하는 function
         // 찬스타임이거나, 1516 이벤트 시 5, 10, 15성일 때는 무조건 성공확률 100
         if ((chancetime == 2) || (sundayOption3 && [5, 10, 15].includes(starLevel))) {
             return { success: 100, failed: 0, destroyed: 0 }
         }
-        else if (starProtect) { // 파괴방지 활성화 시
+        if (starProtect && (12 <= starLevel && starLevel <= 16)) { // 파괴방지 활성화 시
             return {
                 success: percent.Success[starCatch][starLevel],
-                failed: percent.Failed[starCatch][starLevel] + percent.Destroyed[starCatch][starLevel],
+                failed: 100 - percent.Success[starCatch][starLevel],
                 destroyed: 0
             }
         }
@@ -118,7 +118,7 @@ const Render = () => {
                         <util.Text fontsize='20'>x{starLevel}</util.Text>
                     </style.starContainer>
                     <util.Text fontsize='20'>피버 타임 : {chancetime == 2 ? '활성화' : '비활성화'}</util.Text>
-                    <util.Text fontsize='15'>성공 확률 : {calcPercents().success}%&nbsp;실패 확률 : {calcPercents().failed}%&nbsp;파괴 확률 : {calcPercents().destroyed}%</util.Text>
+                    <util.Text fontsize='15'>성공 확률 : {calcPercents().success.toFixed(2)}%&nbsp;실패 확률 : {calcPercents().failed.toFixed(2)}%&nbsp;파괴 확률 : {calcPercents().destroyed.toFixed(2)}%</util.Text>
                     <util.Text fontsize='20'>현재 사용 메소 : {calcFinalCost().toLocaleString('ko-KR')}</util.Text>
                     <util.Text fontsize='20'>사용한 메소 : {starforceCost.toLocaleString('ko-KR')}</util.Text>
                     <button onClick={() => processStarforce()}>스타포스 시행</button>
