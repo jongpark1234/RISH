@@ -127,7 +127,7 @@ const Render = () => {
                     <style.inputWrapper>
                         <style.inputContainer>
                             <util.Text fontsize='15'>장비 요구 레벨</util.Text>
-                            <style.enhanceInput type='text' value={starRequireLevel.toLocaleString('ko-KR')} onChange={(e) => {setStarRequireLevel(e.target.value)}}/>
+                            <style.enhanceInput type='text' value={starRequireLevel.toLocaleString('ko-KR')} onChange={(e) => {inputValue(e.target.value, setStarRequireLevel)}}/>
                         </style.inputContainer>
                         <style.inputContainer>
                             <util.Text fontsize='15'>아이템 가격</util.Text>
@@ -138,7 +138,7 @@ const Render = () => {
                         <util.Text fontsize='20'>현재 단계 메소 : {calcFinalCost().toLocaleString('ko-KR')}</util.Text>
                         <util.Text fontsize='20'>누적 사용 메소 : {starforceCost.toLocaleString('ko-KR')}</util.Text>
                     </style.percentContainer>
-                    <button onClick={() => processStarforce()}>스타포스 시행</button>
+                    <style.processButton onClick={() => processStarforce()}>스타포스 시행</style.processButton>
                 </style.enhanceContainer>
                 <style.optionContainer>
                     <util.Text fontweight='bold'>옵션</util.Text>

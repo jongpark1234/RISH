@@ -64,7 +64,30 @@ export const enhanceInput = styled.input`
     height: 20px;
     padding-left: 3px;
     border: 1px solid black;
+    border-radius: 3px;
     outline: none;
+    transition: .15s ease-in-out;
+    &:focus {
+        border-color: gray;
+    }
+`
+export const processButton = styled.button`
+    width: 100px;
+    height: 40px;
+    background-color: #ffff00;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px black;
+    transition: .15s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        background-color: #eeee00;
+    }
+    &:active {
+        position: relative;
+        top: 2px;
+    }
 `
 export const optionContainer = styled.div`
     width: 20%;
