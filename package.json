@@ -22,9 +22,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://jongpark1234.github.io/RISH/",
   "eslintConfig": {
-    "extends": [
+      "extends": [
       "react-app",
       "react-app/jest"
     ]
@@ -40,8 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
+},
+"devDependencies": {
     "gh-pages": "^4.0.0"
-  }
+},
+"homepage": "http://jongpark1234.github.io/RISH"
 }
