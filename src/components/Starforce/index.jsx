@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { chancetimeState, mvpLevelState, starCatchState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
+import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
 
 import * as style from './index.style'
 import * as util from '../../styles/util'
@@ -16,11 +16,15 @@ import failedEffect from './star_failed.gif'
 import distroyEffect from './star_destroyed.gif'
 
 const Render = () => {
+    // common states
     const [starRequireLevel, setStarRequireLevel] = useRecoilState(starRequireLevelState)
     const [starItemCost, setStarItemCost] = useRecoilState(starItemCostState)
     const [starLevel, setStarLevel] = useRecoilState(starLevelState)
     const [chancetime, setChancetime] = useRecoilState(chancetimeState)
     const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
+    const [constantProcessStarforce, setConstantProcessStarforce] = useRecoilState(constantProcessStarforceState)
+    const [constantProcessStarforceGoal, setConstantProcessStarforceGoal] = useRecoilState(constantProcessStarforceGoalState)
+    // option states
     const [starCatch, setStarCatch] = useRecoilState(starCatchState)
     const [starProtect, setStarProtect] = useRecoilState(starProtectState)
     const [starPc, setStarPc] = useRecoilState(starPcState)
@@ -29,7 +33,21 @@ const Render = () => {
     const [sundayOption2, setSundayOption2] = useRecoilState(sundayOption2State)
     const [sundayOption3, setSundayOption3] = useRecoilState(sundayOption3State)
     const inputValue = (state, func) => {
-        func(Number(state.toString().replace(/[^0-9]/g, '')))
+        let Max = Infinity
+        let Min = 0 
+        if (func == setStarRequireLevel) {
+            Max = 300
+            Min = 0
+        }
+        else if (func == setStarItemCost) {
+            Max = Infinity
+            Min = 0
+        }
+        else if (func == setConstantProcessStarforceGoal) {
+            Max = 25
+            Min = starLevel + 1
+        }
+        func(Math.max(Math.min(Number(state.toString().replace(/[^0-9]/g, '')), Max), Min))
     }
     const calcNormalCost = () => {
         let ret = 0
@@ -111,6 +129,12 @@ const Render = () => {
             }
         }
     }
+    const constantProcess = () => {
+        setConstantProcessStarforce(constantProcessStarforce ^ 1)
+        // while (starLevel != constantProcessStarforceGoal && constantProcessStarforce) {
+
+        // }
+    }
 
     return (
         <style.background>
@@ -133,13 +157,21 @@ const Render = () => {
                             <util.Text fontsize='15'>아이템 가격</util.Text>
                             <style.enhanceInput type='text' value={starItemCost.toLocaleString('ko-KR')} onChange={(e) => {inputValue(e.target.value, setStarItemCost)}}/>
                         </style.inputContainer>
+                        <style.inputContainer>
+                            <util.Text fontsize='15'>목표 별 개수</util.Text>
+                            <style.enhanceInput type='text' value={constantProcessStarforceGoal.toLocaleString('ko-KR')} onChange={(e) => {inputValue(e.target.value, setConstantProcessStarforceGoal)}}/>
+                        </style.inputContainer>
                     </style.inputWrapper>
                     <style.percentContainer>
                         <util.Text fontsize='20'>현재 단계 메소 : {calcFinalCost().toLocaleString('ko-KR')}</util.Text>
                         <util.Text fontsize='20'>누적 사용 메소 : {starforceCost.toLocaleString('ko-KR')}</util.Text>
                     </style.percentContainer>
-                    <style.processButton onClick={() => processStarforce()}>스타포스 시행</style.processButton>
+                    <style.processButtonContainer>
+                        <style.processButton onClick={() => processStarforce()}>스타포스 시행</style.processButton>
+                        <style.constantProcessButton isturned={constantProcessStarforce} onClick={() => constantProcess()}/>
+                    </style.processButtonContainer>
                 </style.enhanceContainer>
+
                 <style.optionContainer>
                     <util.Text fontweight='bold'>옵션</util.Text>
                     <style.optionList>

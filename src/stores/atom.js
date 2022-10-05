@@ -25,12 +25,22 @@ export let starRequireLevelState = atom({
 
 export let starItemCostState = atom({
     key: 'starItemCost',
-    default: 100000000
+    default: 1000000000
 })
 
 export let chancetimeState = atom({
     key: 'chancetime',
     default: 0
+})
+
+export let constantProcessStarforceState = atom({
+    key: 'constantProcess',
+    default: 0
+})
+
+export let constantProcessStarforceGoalState = atom({
+    key: 'constantProcessStarforceGoal',
+    default: 17
 })
 
 // common

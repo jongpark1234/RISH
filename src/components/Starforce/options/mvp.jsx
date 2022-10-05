@@ -21,11 +21,11 @@ const Render = () => {
                 <util.Text fontsize='20'>MVP</util.Text>
                 <style.line/>
             </style.optionCategory>
-            <style.buttonContainer>
+            <style.optionButtonContainer>
                 <style.optionButton onClick={() => {handleMvp(-1)}}>등급 ▼</style.optionButton>
                 <style.mvpImg src={imglist[mvp]}/>
                 <style.optionButton onClick={() => {handleMvp(+1)}}>등급 ▲</style.optionButton>
-            </style.buttonContainer>
+            </style.optionButtonContainer>
         </style.optionRow>
     )
 }

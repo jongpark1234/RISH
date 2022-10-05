@@ -18,11 +18,11 @@ const Render = () => {
                 <util.Text fontsize='20'>common</util.Text>
                 <style.line/>
             </style.optionCategory>
-            <style.buttonContainer>
+            <style.optionButtonContainer>
                 <style.optionButton isturned={starCatch} onClick={() => {setStarCatch(starCatch ^ 1)}}>스타캐치</style.optionButton>
                 <style.protectButton isturned={starProtect} starLevel={starLevel} onClick={() => {setStarProtect(starProtect ^ 1)}}>파괴방지</style.protectButton>
                 <style.optionButton isturned={starPc} onClick={() => {setStarPc(starPc ^ 1)}}>PC방</style.optionButton>
-            </style.buttonContainer>
+            </style.optionButtonContainer>
         </style.optionRow>
     )
 }

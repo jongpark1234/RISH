@@ -18,7 +18,7 @@ const Render = () => {
                 <util.Text fontsize='20'>썬데이 메이플</util.Text>
                 <style.line/>
             </style.optionCategory>
-            <style.buttonContainer>
+            <style.optionButtonContainer>
                 {options.map((items) => {
                     return (
                         <style.optionButton isturned={items.state} onClick={() => {items.func(items.state ^ 1)}}>
@@ -26,7 +26,7 @@ const Render = () => {
                         </style.optionButton>
                     )
                 })}
-            </style.buttonContainer>
+            </style.optionButtonContainer>
         </style.optionRow>
     )
 }

@@ -89,6 +89,15 @@ export const processButton = styled.button`
         top: 2px;
     }
 `
+export const constantProcessButton = styled(processButton)`
+    position: relative;
+    background-color: ${(props) => props.isturned ? '#ffff00' : '#eeee00'};
+`
+export const constantProcessGoalButton = styled(enhanceInput)`
+    width: 50%;
+    top: 50%;
+    position: absolute;
+`
 export const optionContainer = styled.div`
     width: 20%;
     min-width: 400px;
@@ -123,6 +132,11 @@ export const line = styled.hr`
 `
 export const buttonContainer = styled.div`
     display: flex;
+`
+export const processButtonContainer = styled(buttonContainer)`
+    gap: 30px;
+`
+export const optionButtonContainer = styled(buttonContainer)`
     justify-content: space-evenly;
 `
 export const optionButton = styled.div`
