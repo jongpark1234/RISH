@@ -45,7 +45,7 @@ const Render = () => {
         }
         else if (func == setConstantProcessStarforceGoal) {
             Max = 25
-            Min = starLevel + 1
+            Min = 0
         }
         func(Math.max(Math.min(Number(state.toString().replace(/[^0-9]/g, '')), Max), Min))
     }
@@ -91,7 +91,11 @@ const Render = () => {
             destroyed: percent.Destroyed[starCatch][starLevel]
         }
     }
-    const processStarforce = () => {
+    const processStarforce = () => { // 스타포스 실행 함수
+        if (constantProcessStarforceGoal == starLevel) {
+            return
+        }
+
         // L: 레벨 제한, S: 스타포스 강화 상태
         const finalCost = calcFinalCost()
         const finalPercents = calcPercents()
@@ -129,12 +133,12 @@ const Render = () => {
             }
         }
     }
-    const constantProcess = () => {
-        setConstantProcessStarforce(constantProcessStarforce ^ 1)
-        // while (starLevel != constantProcessStarforceGoal && constantProcessStarforce) {
-
-        // }
-    }
+    // const constantProcess = () => { // 스타포스 연속 실행 함수
+    //     setConstantProcessStarforce(constantProcessStarforce ^ 1)
+    //     while ((starLevel != constantProcessStarforceGoal) && constantProcessStarforce) {
+    //         processStarforce()
+    //     }
+    // }
 
     return (
         <style.background>
@@ -168,7 +172,7 @@ const Render = () => {
                     </style.percentContainer>
                     <style.processButtonContainer>
                         <style.processButton onClick={() => processStarforce()}>스타포스 시행</style.processButton>
-                        <style.constantProcessButton isturned={constantProcessStarforce} onClick={() => constantProcess()}/>
+                        {/* <style.constantProcessButton isturned={constantProcessStarforce} onClick={() => constantProcess()}>연속 시행</style.constantProcessButton> */}
                     </style.processButtonContainer>
                 </style.enhanceContainer>
 

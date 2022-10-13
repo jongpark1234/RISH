@@ -91,7 +91,11 @@ export const processButton = styled.button`
 `
 export const constantProcessButton = styled(processButton)`
     position: relative;
-    background-color: ${(props) => props.isturned ? '#ffff00' : '#eeee00'};
+    background-color: ${(props) => props.isturned ? '#eeee00' : '#ffff00'};
+    transition: .15s ease-in-out;
+    &:hover {
+        background-color: ${(props) => props.isturned ? '#dddd00' : '#eeee00'};
+    }
 `
 export const constantProcessGoalButton = styled(enhanceInput)`
     width: 50%;
