@@ -74,6 +74,17 @@ export const mainContainer = styled.div`
     background-color: white;
     border-radius: 15px;
     box-shadow: 2px 2px 4px 4px gray;
-    gap: 30px;
+    gap: 20px;
     z-index: 1;
+`
+export const optionContainer = styled.div`
+    width: 80%;
+    height: 40%;
+    border: 4px solid black;
+    border-radius: 5%;
+`
+export const processButton = styled.button`
+    width: 80%;
+    height: 5%;
+    border: 1px solid black;
 `

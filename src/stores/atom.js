@@ -85,4 +85,11 @@ export let cubeSelectState = atom({
     key: 'cubeSelect',
     default: [1, 0, 0, 0, 0, 0, 0]
 })
- 
+export let cubeGradeState = atom({
+    key: 'cubeGrade',
+    default: 0
+})
+export let cubeEditionalGradeState = atom({
+    key: 'cubeEditionalGrade',
+    default: 0
+})

@@ -32,6 +32,9 @@ const Render = () => {
                     }) }
                 </style.cubeContainer>
                 <style.mainContainer>
+                    <style.optionContainer/>
+                    <style.optionContainer/>
+                    <style.processButton/>
                 </style.mainContainer>
                 <style.cubeContainer>
                     { bottomCubelist.map((element, idx) => {
