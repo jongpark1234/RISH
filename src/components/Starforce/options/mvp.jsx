@@ -2,12 +2,12 @@ import { useRecoilState } from 'recoil'
 import { mvpLevelState } from '../../../stores/atom'
 import * as style from '../index.style'
 import * as util from '../../../styles/util'
-import mvpNone from '../../../images/none.png'
-import mvpBronze from '../../../images/b.png'
-import mvpSilver from '../../../images/s.png'
-import mvpGold from '../../../images/g.png'
-import mvpDiamond from '../../../images/d.png'
-import mvpRed from '../../../images/r.png'
+import mvpNone from '../../../images/mvp/none.png'
+import mvpBronze from '../../../images/mvp/b.png'
+import mvpSilver from '../../../images/mvp/s.png'
+import mvpGold from '../../../images/mvp/g.png'
+import mvpDiamond from '../../../images/mvp/d.png'
+import mvpRed from '../../../images/mvp/r.png'
 const Render = () => {
     const [mvp, setMvp] = useRecoilState(mvpLevelState)
     const imglist = [mvpNone, mvpBronze, mvpSilver, mvpGold, mvpDiamond, mvpRed]

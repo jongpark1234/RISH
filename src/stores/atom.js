@@ -76,3 +76,13 @@ export let sundayOption3State = atom({
     key: 'sundayOption3',
     default: 0
 })
+
+
+
+// potential
+
+export let cubeSelectState = atom({
+    key: 'cubeSelect',
+    default: [1, 0, 0, 0, 0, 0, 0]
+})
+ 
