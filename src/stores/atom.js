@@ -81,15 +81,27 @@ export let sundayOption3State = atom({
 
 // potential
 
+export let cubePartState = atom({
+    key: 'cubePart',
+    default: 0
+})
 export let cubeSelectState = atom({
     key: 'cubeSelect',
-    default: [1, 0, 0, 0, 0, 0, 0]
+    default: 0 // [occult, craftman, meister, red, black, occultAdditional, additional]
 })
 export let cubeGradeState = atom({
     key: 'cubeGrade',
     default: 0
 })
-export let cubeEditionalGradeState = atom({
-    key: 'cubeEditionalGrade',
+export let cubeAdditionalGradeState = atom({
+    key: 'cubeAdditionalGrade',
     default: 0
+})
+export let cubeOptionState = atom({
+    key: 'cubeOption',
+    default: ['', '', '']
+})
+export let cubeAdditionalOptionState = atom({
+    key: 'cubeAdditionalOption',
+    default: ['', '', '']
 })

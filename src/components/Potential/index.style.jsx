@@ -80,8 +80,18 @@ export const mainContainer = styled.div`
 export const optionContainer = styled.div`
     width: 80%;
     height: 40%;
-    border: 4px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-radius: 5%;
+    box-shadow: 1px 1px 3px 3px gray;
+    gap: 10px;
+    > span {
+        font-size: 17px;
+        text-shadow: 0 0 3px ${(props) => props.grade == 0 ? 'blue' : props.grade == 1 ? 'purple' : props.grade == 2 ? '#777700' : 'green'};
+        transition: .15s ease-in-out
+    }
 `
 export const processButton = styled.button`
     width: 80%;
