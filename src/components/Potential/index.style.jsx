@@ -96,5 +96,17 @@ export const optionContainer = styled.div`
 export const processButton = styled.button`
     width: 80%;
     height: 5%;
-    border: 1px solid black;
+    margin-top: 0px;
+    background-color: white;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px 4px gray;
+    font-size: 15px;
+    transition: .15s ease-in-out;
+    cursor: pointer;
+    &:active {
+        background-color: #f7f7f7;
+        margin-top: 2px;
+    }
 `

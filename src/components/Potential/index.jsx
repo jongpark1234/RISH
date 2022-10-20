@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { cubeAdditionalGradeState, cubeAdditionalOptionState, cubeGradeState, cubeOptionState, cubePartState, cubeSelectState } from '../../stores/atom'
+import { cubeAdditionalGradeState, cubeAdditionalOptionState, cubeGradeState, cubeOptionState, cubePartState, cubeSelectState, cubeUnavailableState } from '../../stores/atom'
 
 import * as style from './index.style'
 
@@ -19,12 +19,16 @@ const Render = () => {
     const [cubeSelect, setCubeSelect] = useRecoilState(cubeSelectState)
     const [cubeOption, setCubeOption] = useRecoilState(cubeOptionState)
     const [cubeAdditionalOption, setCubeAdditionalOption] = useRecoilState(cubeAdditionalOptionState)
+    const [cubeUnavailable, setCubeUnavailable] = useRecoilState(cubeUnavailableState)
+
+    setCubeUnavailable(((cubeSelect === 0 && cubeGrade >= 2) || (cubeSelect === 1 && cubeGrade === 3) || (cubeSelect === 5 && cubeAdditionalGrade >= 1)))
+
     const pickCube = (idx) => {
         setCubeSelect(idx)
     }
     const processButton = () => {
-        tryUpgrade()
-        applyOption()
+        tryUpgrade() // 큐브 등급 상승 시도
+        applyOption() // 큐브 옵션 랜덤 적용
     }
 
     const tryUpgrade = () => { // 큐브 등급 상승을 시도하는 함수
@@ -66,16 +70,20 @@ const Render = () => {
                 </style.cubeContainer>
                 <style.mainContainer>
                     <style.optionContainer grade={cubeGrade}>
-                        <span>{cubeOption[0]}</span>
-                        <span>{cubeOption[1]}</span>
-                        <span>{cubeOption[2]}</span>
+                        { cubeOption.map((element, idx) => {
+                            return (
+                                <span key={idx}>{element == '' ? '잠재능력이 봉인되어 있습니다.' : element}</span>
+                            )
+                        }) }
                     </style.optionContainer>
                     <style.optionContainer grade={cubeAdditionalGrade}>
-                        <span>{cubeAdditionalOption[0]}</span>
-                        <span>{cubeAdditionalOption[1]}</span>
-                        <span>{cubeAdditionalOption[2]}</span>
+                        { cubeAdditionalOption.map((element, idx) => {
+                            return (
+                                <span key={idx}>{element == '' ? '잠재능력이 봉인되어 있습니다.' : element}</span>
+                            )
+                        }) }
                     </style.optionContainer>
-                    <style.processButton onClick={processButton}/>
+                    <style.processButton onClick={processButton} disabled={cubeUnavailable}>잠재능력 부여</style.processButton>
                 </style.mainContainer>
                 <style.cubeContainer>
                     { bottomCubelist.map((element, idx) => {

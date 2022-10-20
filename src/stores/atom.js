@@ -105,3 +105,7 @@ export let cubeAdditionalOptionState = atom({
     key: 'cubeAdditionalOption',
     default: ['', '', '']
 })
+export let cubeUnavailableState = atom({
+    key: 'cubeUnavailable',
+    default: false
+})
