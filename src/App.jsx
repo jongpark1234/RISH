@@ -4,7 +4,7 @@ import { RecoilRoot } from 'recoil'
 const App = () => {
     return (
         <RecoilRoot>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <BrowserRouter>
                 <Router/>
             </BrowserRouter>
         </RecoilRoot>

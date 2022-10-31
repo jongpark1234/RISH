@@ -95,6 +95,7 @@ const Render = () => {
                     }) }
                 </style.cubeContainer>
             </style.wrapper>
+            <style.optionButton></style.optionButton>
         </style.background>
     )
 }

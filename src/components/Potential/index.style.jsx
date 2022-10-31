@@ -10,6 +10,16 @@ export const background = styled.div`
     align-items: center;
     position: relative;
 `
+export const optionButton = styled.div`
+    width: 75px;
+    aspect-ratio: 1 / 1;
+    position: fixed;
+    border-radius: 100%;
+    background-color: lightgreen;
+    box-shadow: 2px 2px 6px 1px gray;
+    bottom: 5%;
+    right: 5%;
+`
 export const wrapper = styled.div`
     width: 20%;
     min-width: 400px;

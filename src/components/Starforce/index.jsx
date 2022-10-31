@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
+import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starDestroyedCountState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, starSuccessRatioState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
 
 import * as style from './index.style'
 import * as util from '../../styles/util'
@@ -24,6 +24,8 @@ const Render = () => {
     const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
     const [constantProcessStarforce, setConstantProcessStarforce] = useRecoilState(constantProcessStarforceState)
     const [constantProcessStarforceGoal, setConstantProcessStarforceGoal] = useRecoilState(constantProcessStarforceGoalState)
+    const [starSuccessRatio, setStarSuccessRatio] = useRecoilState(starSuccessRatioState)
+    const [starDestroyedCount, setStarDestroyedCount] = useRecoilState(starDestroyedCountState)
     // option states
     const [starCatch, setStarCatch] = useRecoilState(starCatchState)
     const [starProtect, setStarProtect] = useRecoilState(starProtectState)
@@ -32,18 +34,18 @@ const Render = () => {
     const [sundayOption1, setSundayOption1] = useRecoilState(sundayOption1State)
     const [sundayOption2, setSundayOption2] = useRecoilState(sundayOption2State)
     const [sundayOption3, setSundayOption3] = useRecoilState(sundayOption3State)
-    const inputValue = (state, func) => {
+    const inputValue = ( state, func ) => {
         let Max = Infinity
         let Min = 0 
-        if (func == setStarRequireLevel) {
+        if (func == setStarRequireLevel) { // 요구레벨 입력 form
             Max = 300
             Min = 0
         }
-        else if (func == setStarItemCost) {
+        else if (func == setStarItemCost) { // 아이템 가격 입력 form
             Max = Infinity
             Min = 0
         }
-        else if (func == setConstantProcessStarforceGoal) {
+        else if (func == setConstantProcessStarforceGoal) { // 목표 별 입력 form
             Max = 25
             Min = 0
         }
@@ -91,6 +93,10 @@ const Render = () => {
             destroyed: percent.Destroyed[starCatch][starLevel]
         }
     }
+    const handleSuccessRatio = ( index ) => { // 유저의 스타포스 시도 횟수 대비 성공 횟수 비율을 계산하여 상태를 저장하는 function
+        setStarSuccessRatio(starSuccessRatio.map((element, idx) => idx === starLevel ? [element[0] + Number(index == 0), element[1] + 1] : element))
+        console.log(starSuccessRatio)
+    }
     const processStarforce = () => { // 스타포스 실행 함수
         if (constantProcessStarforceGoal == starLevel) {
             return
@@ -106,6 +112,7 @@ const Render = () => {
 
         if (randomValue < finalPercents.success) { // 성공
             setChancetime(0) // 찬스타임 초기화
+            handleSuccessRatio(0) // 성공 횟수 + 1, 시도 횟수 + 1
             if (sundayOption1 && starLevel <= 10) { // 썬데이 메이플 옵션 ( 10성 이하 강화 시 +2 )
                 setStarLevel(starLevel + 2)
             }
@@ -114,6 +121,7 @@ const Render = () => {
             }
         }
         else if (randomValue < finalPercents.success + finalPercents.failed) { // 실패
+            handleSuccessRatio(1) // 시도 횟수 + 1
             if ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20].includes(starLevel)) { // 강화 단계 유지
                 setStarLevel(starLevel)
             }
@@ -124,6 +132,8 @@ const Render = () => {
         }
         else { // 파괴
             setChancetime(0) // 찬스타임 초기화
+            setStarDestroyedCount(starDestroyedCount + 1) // 파괴 횟수 + 1
+            handleSuccessRatio(1) // 시도 횟수 + 1
             if ((12 <= starLevel && starLevel <= 16) && starProtect) { // 파괴 방지 활성화
                 setStarLevel(starLevel)
             }
@@ -139,7 +149,6 @@ const Render = () => {
     //         processStarforce()
     //     }
     // }
-
     return (
         <style.background>
             <style.title>스타포스 시뮬레이션</style.title>

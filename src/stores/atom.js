@@ -40,7 +40,17 @@ export let constantProcessStarforceState = atom({
 
 export let constantProcessStarforceGoalState = atom({
     key: 'constantProcessStarforceGoal',
-    default: 17
+    default: 25
+})
+
+export let starSuccessRatioState = atom({
+    key: 'starSuccessRatio',
+    default: Array(25).fill([0, 0], 0, 25)
+})
+
+export let starDestroyedCountState = atom({
+    key: 'starDestroyedCount',
+    default: 0
 })
 
 // common
@@ -96,6 +106,10 @@ export let cubeGradeState = atom({
 export let cubeAdditionalGradeState = atom({
     key: 'cubeAdditionalGrade',
     default: 0
+})
+export let cubeCountState = atom({
+    key: 'cubeCount',
+    default: [0, 0, 0, 0, 0, 0, 0] // [occult, craftman, meister, red, black, occultAdditional, additional]
 })
 export let cubeOptionState = atom({
     key: 'cubeOption',
