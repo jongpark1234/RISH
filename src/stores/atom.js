@@ -2,8 +2,16 @@ import { atom } from 'recoil'
 
 // costs
 
-export let starforceCostState = atom({
+export const starforceCostState = atom({ // 스타포스로 사용한 전체 메소
     key: 'starforceCost',
+    default: 0
+})
+export const starProtectCostState = atom({ // 파괴 방지로 추가적으로 지불한 메소
+    key: 'starProtectCost',
+    default: 0
+})
+export const starProtectedCountState = atom({ // 파괴 방지로 인해 파괴를 막은 횟수
+    key: 'starProtectedCount',
     default: 0
 })
 
@@ -13,76 +21,76 @@ export let starforceCostState = atom({
 
 // main
 
-export let starLevelState = atom({
+export const starLevelState = atom({
     key: 'starLevel',
     default: 0
 })
 
-export let starRequireLevelState = atom({
+export const starRequireLevelState = atom({
     key: 'starRequireLevel',
     default: 200
 })
 
-export let starItemCostState = atom({
+export const starItemCostState = atom({
     key: 'starItemCost',
     default: 1000000000
 })
 
-export let chancetimeState = atom({
+export const chancetimeState = atom({
     key: 'chancetime',
     default: 0
 })
 
-export let constantProcessStarforceState = atom({
+export const constantProcessStarforceState = atom({
     key: 'constantProcess',
     default: 0
 })
 
-export let constantProcessStarforceGoalState = atom({
+export const constantProcessStarforceGoalState = atom({
     key: 'constantProcessStarforceGoal',
     default: 25
 })
 
-export let starSuccessRatioState = atom({
+export const starSuccessRatioState = atom({
     key: 'starSuccessRatio',
     default: Array(25).fill([0, 0], 0, 25)
 })
 
-export let starDestroyedCountState = atom({
+export const starDestroyedCountState = atom({
     key: 'starDestroyedCount',
     default: 0
 })
 
 // common
-export let starCatchState = atom({
+export const starCatchState = atom({
     key: 'starcatch',
     default: 0
 })
-export let starProtectState = atom({
+export const starProtectState = atom({
     key: 'protect',
     default: 0
 })
-export let starPcState = atom({
+export const starPcState = atom({
     key: 'starPc',
     default: 0
 })
 
 // mvp
-export let mvpLevelState = atom({
+export const mvpLevelState = atom({
     key: 'mvp',
     default: 0
 })
 
 // sundayMaple
-export let sundayOption1State = atom({
+export const sundayOption1State = atom({
     key: 'sundayOption1',
     default: 0
 })
-export let sundayOption2State = atom({
+export const sundayOption2State = atom({
     key: 'sundayOption2',
     default: 0
 })
-export let sundayOption3State = atom({
+export const sundayOption3State = atom({
     key: 'sundayOption3',
     default: 0
 })
@@ -91,35 +99,35 @@ export let sundayOption3State = atom({
 
 // potential
 
-export let cubePartState = atom({
+export const cubePartState = atom({
     key: 'cubePart',
     default: 0
 })
-export let cubeSelectState = atom({
+export const cubeSelectState = atom({
     key: 'cubeSelect',
     default: 0 // [occult, craftman, meister, red, black, occultAdditional, additional]
 })
-export let cubeGradeState = atom({
+export const cubeGradeState = atom({
     key: 'cubeGrade',
     default: 0
 })
-export let cubeAdditionalGradeState = atom({
+export const cubeAdditionalGradeState = atom({
     key: 'cubeAdditionalGrade',
     default: 0
 })
-export let cubeCountState = atom({
+export const cubeCountState = atom({
     key: 'cubeCount',
     default: [0, 0, 0, 0, 0, 0, 0] // [occult, craftman, meister, red, black, occultAdditional, additional]
 })
-export let cubeOptionState = atom({
+export const cubeOptionState = atom({
     key: 'cubeOption',
     default: ['', '', '']
 })
-export let cubeAdditionalOptionState = atom({
+export const cubeAdditionalOptionState = atom({
     key: 'cubeAdditionalOption',
     default: ['', '', '']
 })
-export let cubeUnavailableState = atom({
+export const cubeUnavailableState = atom({
     key: 'cubeUnavailable',
     default: false
 })

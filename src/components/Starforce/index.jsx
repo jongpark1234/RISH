@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starDestroyedCountState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectState, starRequireLevelState, starSuccessRatioState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
+import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starDestroyedCountState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectCostState, starProtectedCountState, starProtectState, starRequireLevelState, starSuccessRatioState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
 
 import * as style from './index.style'
 import * as util from '../../styles/util'
@@ -21,7 +21,6 @@ const Render = () => {
     const [starItemCost, setStarItemCost] = useRecoilState(starItemCostState)
     const [starLevel, setStarLevel] = useRecoilState(starLevelState)
     const [chancetime, setChancetime] = useRecoilState(chancetimeState)
-    const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
     const [constantProcessStarforce, setConstantProcessStarforce] = useRecoilState(constantProcessStarforceState)
     const [constantProcessStarforceGoal, setConstantProcessStarforceGoal] = useRecoilState(constantProcessStarforceGoalState)
     const [starSuccessRatio, setStarSuccessRatio] = useRecoilState(starSuccessRatioState)
@@ -34,6 +33,12 @@ const Render = () => {
     const [sundayOption1, setSundayOption1] = useRecoilState(sundayOption1State)
     const [sundayOption2, setSundayOption2] = useRecoilState(sundayOption2State)
     const [sundayOption3, setSundayOption3] = useRecoilState(sundayOption3State)
+    // statistics states ( costs, counts )
+    const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
+    const [starProtectedCount, setStarProtectedCount] = useRecoilState(starProtectedCountState)
+    const [starProtectCost, setStarProtectCost] = useRecoilState(starProtectCostState)
+
+
     const inputValue = ( state, func ) => {
         let Max = Infinity
         let Min = 0 
@@ -95,7 +100,6 @@ const Render = () => {
     }
     const handleSuccessRatio = ( index ) => { // 유저의 스타포스 시도 횟수 대비 성공 횟수 비율을 계산하여 상태를 저장하는 function
         setStarSuccessRatio(starSuccessRatio.map((element, idx) => idx === starLevel ? [element[0] + Number(index == 0), element[1] + 1] : element))
-        console.log(starSuccessRatio)
     }
     const processStarforce = () => { // 스타포스 실행 함수
         if (constantProcessStarforceGoal == starLevel) {
@@ -136,6 +140,7 @@ const Render = () => {
             handleSuccessRatio(1) // 시도 횟수 + 1
             if ((12 <= starLevel && starLevel <= 16) && starProtect) { // 파괴 방지 활성화
                 setStarLevel(starLevel)
+                setStarProtectCost(starProtectCost + (finalCost / 2))
             }
             else { // 파괴 방지 비활성화
                 setStarforceCost(starforceCost + starItemCost)

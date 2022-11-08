@@ -13,8 +13,22 @@ export const container = styled.div`
     padding-left: 20px;
     padding-top: 10px;
 `
+export const chartContainer = styled.div`
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+`
 export const textContainer = styled.div`
     gap: 10px;
+    display: flex;
+    align-items: center;
+`
+export const sliderContainer = styled.div`
+    width: 50%;
     display: flex;
     align-items: center;
 `
