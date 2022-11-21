@@ -56,28 +56,25 @@ const Render = () => {
         }
         func(Math.max(Math.min(Number(state.toString().replace(/[^0-9]/g, '')), Max), Min))
     }
-    const calcNormalCost = () => {
-        let ret = 0
-        if (starLevel < 10) {
-            ret = 1000 + ((starRequireLevel ** 3) * (starLevel + 1)) / 25
-        } else {
-            ret = 1000 + ((starRequireLevel ** 3) * ((starLevel + 1) ** 2.7)) / ((starLevel < 15) ? 400 : 200)
-        }
-        return Math.round(ret / 100) * 100
+    const calcNormalCost = () => { // 스타포스 기본 비용 계산식 함수
+        return Math.round((starLevel < 10 ? 1000 + ((starRequireLevel ** 3) * (starLevel + 1)) / 25 : 1000 + ((starRequireLevel ** 3) * ((starLevel + 1) ** 2.7)) / ((starLevel < 15) ? 400 : 200)) / 100) * 100
     }
-    const calcDiscount = () => {
+    const calcDiscount = () => { // 할인율 계산 함수
         const mvpDiscount = (starLevel < 17) ? [0, 0, 0.03, 0.05, 0.1, 0.1][mvpLevel] : 0 // mvp 할인율 계산
         const pcDiscount = starPc ? 0.05 : 0 // pc방 할인 5% 여부
         const sundayDiscount = sundayOption2 ? 0.7 : 1 // 썬데이 메이플 30% 할인 여부
 
         return (1 - mvpDiscount - pcDiscount) * sundayDiscount
     }
+    const calcProtectCost = (normalCost) => { // 파괴방지 비용 계산 함수
+        // 12성 ~ 16성 + 파괴방지 켜짐 => 파괴방지 적용
+        return ((12 <= starLevel && starLevel <= 16) && starProtect) ? normalCost : 0
+    }
     const calcFinalCost = () => {
         // L: 레벨 제한, S: 스타포스 강화 상태
         const normalCost = calcNormalCost() // 해당 단계의 스타포스 기본 비용
         const discount = calcDiscount() // 스타포스 할인 비율
-        // 12성 ~ 16성 + 파괴방지 켜짐 => 파괴방지 적용
-        const protectCost = ((12 <= starLevel && starLevel <= 16) && starProtect) ? normalCost : 0
+        const protectCost = calcProtectCost(normalCost) // 파괴방지 추가 비용
         return Math.round((normalCost * discount + protectCost) / 10) * 10
     }
     const calcPercents = () => { // 성공 확률, 실패 확률, 파괴 확률을 계산하여 반환하는 function
@@ -102,8 +99,8 @@ const Render = () => {
         setStarSuccessRatio(starSuccessRatio.map((element, idx) => idx === starLevel ? [element[0] + Number(index == 0), element[1] + 1] : element))
     }
     const processStarforce = () => { // 스타포스 실행 함수
-        if (constantProcessStarforceGoal == starLevel) {
-            return
+        if (constantProcessStarforceGoal == starLevel) { // 목표 단계와 현재 단계가 일치한다면
+            return // 실행하지 않음
         }
 
         // L: 레벨 제한, S: 스타포스 강화 상태
@@ -113,6 +110,10 @@ const Render = () => {
         setStarforceCost(starforceCost + finalCost) // 누적 사용액 추가
 
         const randomValue = Math.random() * 100 // 0=..100 의 난수 생성
+
+        if (randomValue >= percent.Success[starCatch][starLevel] + percent.Failed[starCatch][starLevel] && starProtect) { // 파괴방지를 활성화 하지 않았으면 파괴되었으나 파괴방지로 파괴를 방어한 경우
+            setStarProtectedCount(starProtectedCount + 1) // 파괴를 방어한 횟수 + 1
+        }
 
         if (randomValue < finalPercents.success) { // 성공
             setChancetime(0) // 찬스타임 초기화
@@ -140,20 +141,13 @@ const Render = () => {
             handleSuccessRatio(1) // 시도 횟수 + 1
             if ((12 <= starLevel && starLevel <= 16) && starProtect) { // 파괴 방지 활성화
                 setStarLevel(starLevel)
-                setStarProtectCost(starProtectCost + (finalCost / 2))
             }
             else { // 파괴 방지 비활성화
-                setStarforceCost(starforceCost + starItemCost)
+                setStarforceCost(starforceCost + starItemCost) // 아이템이 파괴되어 아이템 가격만큼 사용 금액 증가
                 setStarLevel(12)
             }
         }
     }
-    // const constantProcess = () => { // 스타포스 연속 실행 함수
-    //     setConstantProcessStarforce(constantProcessStarforce ^ 1)
-    //     while ((starLevel != constantProcessStarforceGoal) && constantProcessStarforce) {
-    //         processStarforce()
-    //     }
-    // }
     return (
         <style.background>
             <style.title>스타포스 시뮬레이션</style.title>

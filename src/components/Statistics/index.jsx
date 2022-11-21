@@ -9,11 +9,12 @@ import * as percent from '../Starforce/percentages'
 
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { starCatchState, starDestroyedCountState, starforceCostState, starSuccessRatioState } from '../../stores/atom'
+import { starCatchState, starDestroyedCountState, starforceCostState, starProtectedCountState, starSuccessRatioState } from '../../stores/atom'
 
 const Render = () => {
     const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
     const [starDestroyedCount, setStarDestroyedCount] = useRecoilState(starDestroyedCountState)
+    const [starProtectedCount, setStarProtectedCount] = useRecoilState(starProtectedCountState)
 
     const [leftSliderValue, setLeftSliderValue] = useState(0)
     const [rightSliderValue, setRightSliderValue] = useState(24)
@@ -61,6 +62,10 @@ const Render = () => {
                 <style.textContainer>
                     <style.textKey>총 파괴 횟수</style.textKey>
                     <style.textValue>{starDestroyedCount}</style.textValue>
+                </style.textContainer>
+                <style.textContainer>
+                    <style.textKey>총 파괴 방어 횟수</style.textKey>
+                    <style.textValue>{starProtectedCount}</style.textValue>
                 </style.textContainer>
             </style.container>
             <style.chartContainer>
