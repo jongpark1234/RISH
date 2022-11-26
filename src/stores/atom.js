@@ -14,7 +14,10 @@ export const starProtectedCountState = atom({ // 파괴 방지로 인해 파괴�
     key: 'starProtectedCount',
     default: 0
 })
-
+export const starProtectedCostState = atom({ // 파괴 방지로 인해 손해보지 않은 메소
+    key: 'starProtectedCost',
+    default: 0
+})
 
 
 // Starforce

@@ -9,12 +9,14 @@ import * as percent from '../Starforce/percentages'
 
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { starCatchState, starDestroyedCountState, starforceCostState, starProtectedCountState, starSuccessRatioState } from '../../stores/atom'
+import { starCatchState, starDestroyedCostState, starDestroyedCountState, starforceCostState, starProtectCostState, starProtectedCostState, starProtectedCountState, starSuccessRatioState } from '../../stores/atom'
 
 const Render = () => {
     const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
     const [starDestroyedCount, setStarDestroyedCount] = useRecoilState(starDestroyedCountState)
     const [starProtectedCount, setStarProtectedCount] = useRecoilState(starProtectedCountState)
+    const [starProtectedCost, setStarProtectedCost] = useRecoilState(starProtectedCostState)
+    const [starProtectCost, setStarProtectCost] = useRecoilState(starProtectCostState)
 
     const [leftSliderValue, setLeftSliderValue] = useState(0)
     const [rightSliderValue, setRightSliderValue] = useState(24)
@@ -66,6 +68,10 @@ const Render = () => {
                 <style.textContainer>
                     <style.textKey>총 파괴 방어 횟수</style.textKey>
                     <style.textValue>{starProtectedCount}</style.textValue>
+                </style.textContainer>
+                <style.textContainer>
+                    <style.textKey>파괴 방어 손익</style.textKey>
+                    <style.textValue>{(starProtectedCost - starProtectCost).toLocaleString()}</style.textValue>
                 </style.textContainer>
             </style.container>
             <style.chartContainer>

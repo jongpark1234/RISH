@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starDestroyedCountState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectCostState, starProtectedCountState, starProtectState, starRequireLevelState, starSuccessRatioState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
+import { chancetimeState, constantProcessStarforceGoalState, constantProcessStarforceState, mvpLevelState, starCatchState, starDestroyedCostState, starDestroyedCountState, starforceCostState, starItemCostState, starLevelState, starPcState, starProtectCostState, starProtectedCostState, starProtectedCountState, starProtectState, starRequireLevelState, starSuccessRatioState, sundayOption1State, sundayOption2State, sundayOption3State } from '../../stores/atom'
 
 import * as style from './index.style'
 import * as util from '../../styles/util'
@@ -37,6 +37,7 @@ const Render = () => {
     const [starforceCost, setStarforceCost] = useRecoilState(starforceCostState)
     const [starProtectedCount, setStarProtectedCount] = useRecoilState(starProtectedCountState)
     const [starProtectCost, setStarProtectCost] = useRecoilState(starProtectCostState)
+    const [starProtectedCost, setStarProtectedCost] = useRecoilState(starProtectedCostState)
 
 
     const inputValue = ( state, func ) => {
@@ -113,6 +114,10 @@ const Render = () => {
 
         if (randomValue >= percent.Success[starCatch][starLevel] + percent.Failed[starCatch][starLevel] && starProtect) { // 파괴방지를 활성화 하지 않았으면 파괴되었으나 파괴방지로 파괴를 방어한 경우
             setStarProtectedCount(starProtectedCount + 1) // 파괴를 방어한 횟수 + 1
+            setStarProtectedCost(starProtectedCost + starItemCost) // 파괴 방어로 보호한 메소 증가
+        }
+        if (starProtect) { // 파괴방지 활성화 시
+            setStarProtectCost(starProtectCost + calcProtectCost(calcNormalCost()))
         }
 
         if (randomValue < finalPercents.success) { // 성공
@@ -140,11 +145,12 @@ const Render = () => {
             setStarDestroyedCount(starDestroyedCount + 1) // 파괴 횟수 + 1
             handleSuccessRatio(1) // 시도 횟수 + 1
             if ((12 <= starLevel && starLevel <= 16) && starProtect) { // 파괴 방지 활성화
+                setStarProtectedCost(starProtectedCost + starItemCost) // 파괴 방지로 손해보지 않은 메소 증가
                 setStarLevel(starLevel)
             }
             else { // 파괴 방지 비활성화
                 setStarforceCost(starforceCost + starItemCost) // 아이템이 파괴되어 아이템 가격만큼 사용 금액 증가
-                setStarLevel(12)
+                setStarLevel(12) // 12성으로 감
             }
         }
     }
@@ -180,7 +186,6 @@ const Render = () => {
                     </style.percentContainer>
                     <style.processButtonContainer>
                         <style.processButton onClick={() => processStarforce()}>스타포스 시행</style.processButton>
-                        {/* <style.constantProcessButton isturned={constantProcessStarforce} onClick={() => constantProcess()}>연속 시행</style.constantProcessButton> */}
                     </style.processButtonContainer>
                 </style.enhanceContainer>
 
