@@ -71,7 +71,7 @@ const Render = () => {
                 </style.textContainer>
                 <style.textContainer>
                     <style.textKey>파괴 방어 손익</style.textKey>
-                    <style.textValue>{(starProtectedCost - starProtectCost).toLocaleString()}</style.textValue>
+                    <style.textValue profit={starProtectedCost - starProtectCost >= 0 ? 'green' : 'red'}>{(starProtectedCost - starProtectCost).toLocaleString()}</style.textValue>
                 </style.textContainer>
             </style.container>
             <style.chartContainer>

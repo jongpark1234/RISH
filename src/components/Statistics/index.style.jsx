@@ -38,4 +38,5 @@ export const textKey = styled.span`
 `
 export const textValue = styled.span`
     font-size: 18px;
+    text-shadow: 0 0 5px ${(props) => props.profit ? props.profit : 'none'};
 `
